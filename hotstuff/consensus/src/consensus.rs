@@ -772,6 +772,7 @@ pub fn start_hotstuff<B, BE, C, N, S, SC>(
 	sync: S,
 	hotstuff_protocol_name: ProtocolName,
 	keystore: KeystorePtr,
+	notification_service: Box<dyn NotificationService>,
 ) -> sp_blockchain::Result<(impl Future<Output = ()> + Send, impl Future<Output = ()> + Send)>
 where
 	B: BlockT,

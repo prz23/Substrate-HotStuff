@@ -9,8 +9,8 @@ use futures::prelude::*;
 use parking_lot::Mutex;
 use sc_network::{
 	NetworkBlock, NetworkStateInfo, NetworkSyncForkRequest, ObservedRole, PeerId, ProtocolName,
-	SyncEventStream,
 };
+use sc_network_sync::SyncEventStream;
 use sc_network_gossip::{
 	GossipEngine, MessageIntent, Network as GossipNetwork, ValidationResult, ValidatorContext,
 };
@@ -210,7 +210,7 @@ impl<B: BlockT, N: Network<B>, S: Syncing<B>> HotstuffNetworkBridge<B, N, S> {
 			service.clone(),
 			sync.clone(),
 			protocol_name,
-			validator.clone(),
+			validator,
 			None,
 		)));
 

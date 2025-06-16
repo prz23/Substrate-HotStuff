@@ -150,9 +150,10 @@ pub fn new_full(config: Configuration) -> Result<TaskManager, ServiceError> {
 		&config.chain_spec,
 	);
 
-	net_config.add_notification_protocol(hotstuff_consensus::config::hotstuff_peers_set_config(
+	let (config, notification_service) = hotstuff_consensus::config::hotstuff_peers_set_config(
 		hotstuff_protocol_name.clone(),
-	));
+	);
+	net_config.add_notification_protocol(config);
 
 	let (network, system_rpc_tx, tx_handler_controller, network_starter, sync_service) =
 		sc_service::build_network(sc_service::BuildNetworkParams {
@@ -277,6 +278,7 @@ pub fn new_full(config: Configuration) -> Result<TaskManager, ServiceError> {
 			Arc::new(sync_service),
 			hotstuff_protocol_name,
 			keystore_container.keystore(),
+			notification_service,
 		)?;
 
 		task_manager

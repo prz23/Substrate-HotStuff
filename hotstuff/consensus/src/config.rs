@@ -19,18 +19,13 @@ pub fn standard_name<Hash: AsRef<[u8]>>(
 
 pub fn hotstuff_peers_set_config(
 	protocol_name: ProtocolName,
-) -> sc_network::config::NonDefaultSetConfig {
-	sc_network::config::NonDefaultSetConfig {
-		notifications_protocol: protocol_name,
-		fallback_names: Default::default(),
-		// Notifications reach ~256kiB in size at the time of writing on Kusama and Polkadot.
-		max_notification_size: 1024 * 1024,
-		handshake: None,
-		set_config: sc_network::config::SetConfig {
-			in_peers: 0,
-			out_peers: 0,
-			reserved_nodes: Vec::new(),
-			non_reserved_mode: sc_network::config::NonReservedPeerMode::Deny,
-		},
-	}
+) -> (sc_network::config::NonDefaultSetConfig, Box<dyn NotificationService>) {
+		let (config, handle) = NonDefaultSetConfig::new(
+			protocol_name.clone(),
+			Vec::new(),
+			1024 * 1024,
+			None,
+			Default::default(),
+		);
+	(config, handle)
 }

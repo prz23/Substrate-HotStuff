@@ -25,6 +25,8 @@ sc-network = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = 
 sc-network-gossip = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
 sc-chain-spec = {  git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
 sc-service = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-network-sync = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+
 
 sp-blockchain = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
 sp-inherents = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
