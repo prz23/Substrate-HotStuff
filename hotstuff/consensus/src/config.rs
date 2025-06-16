@@ -2,6 +2,7 @@
 
 use sc_chain_spec::ChainSpec;
 use sc_network::types::ProtocolName;
+use sc_network::NotificationService;
 
 pub(crate) const HOTSTUFF_PROTOCOL_NAME: &str = "/hotstuff/1";
 
