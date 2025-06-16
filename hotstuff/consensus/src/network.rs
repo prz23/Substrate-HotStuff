@@ -21,6 +21,7 @@ use sp_runtime::traits::{Block as BlockT, Hash as HashT, Header as HeaderT, Numb
 use hotstuff_primitives::RoundNumber;
 
 use crate::{import::PeerReport, message::ConsensusMessage, primitives::ViewNumber};
+use sc_network::NotificationService;
 
 /// A handle to the network.
 ///
@@ -202,13 +203,15 @@ impl<B: BlockT, N: Network<B>, S: Syncing<B>> HotstuffNetworkBridge<B, N, S> {
 	/// handle.
 	/// On creation it will register previous rounds' votes with the gossip
 	/// service taken from the VoterSetState.
-	pub fn new(service: N, sync: S, protocol_name: ProtocolName) -> Self {
+	pub fn new(service: N, sync: S, protocol_name: ProtocolName, notification_service: Box<dyn NotificationService>,
+) -> Self {
 		let (validator, _report_stream) = GossipValidator::new();
 
 		let validator = Arc::new(validator);
 		let gossip_engine = Arc::new(Mutex::new(GossipEngine::new(
 			service.clone(),
 			sync.clone(),
+			notification_service,
 			protocol_name,
 			validator,
 			None,

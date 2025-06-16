@@ -786,7 +786,7 @@ where
 	let LinkHalf { client, .. } = link;
 	let authorities = get_genesis_authorities_from_client::<B, BE, C>(client.clone());
 
-	let network = HotstuffNetworkBridge::new(network.clone(), sync.clone(), hotstuff_protocol_name);
+	let network = HotstuffNetworkBridge::new(network.clone(), sync.clone(), hotstuff_protocol_name, notification_service);
 	let synchronizer = Synchronizer::<B, BE, C>::new(client.clone());
 	let consensus_state = ConsensusState::<B>::new(keystore, authorities);
 
