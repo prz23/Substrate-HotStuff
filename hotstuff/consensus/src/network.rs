@@ -213,7 +213,7 @@ impl<B: BlockT, N: Network<B>, S: Syncing<B>> HotstuffNetworkBridge<B, N, S> {
 			sync.clone(),
 			notification_service,
 			protocol_name,
-			validator,
+			validator.clone(),
 			None,
 		)));
 
