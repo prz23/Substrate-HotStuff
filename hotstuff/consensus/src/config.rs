@@ -21,7 +21,7 @@ pub fn standard_name<Hash: AsRef<[u8]>>(
 pub fn hotstuff_peers_set_config(
 	protocol_name: ProtocolName,
 ) -> (sc_network::config::NonDefaultSetConfig, Box<dyn NotificationService>) {
-		let (config, handle) = NonDefaultSetConfig::new(
+		let (config, handle) = sc_network::config::NonDefaultSetConfig::new(
 			protocol_name.clone(),
 			Vec::new(),
 			1024 * 1024,

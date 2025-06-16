@@ -36,6 +36,7 @@ use crate::{
 	synchronizer::{Synchronizer, Timer},
 };
 use hotstuff_primitives::{AuthorityId, AuthorityList, AuthoritySignature, HOTSTUFF_KEY_TYPE};
+use sc_network::NotificationService;
 
 #[cfg(test)]
 #[path = "tests/consensus_tests.rs"]
