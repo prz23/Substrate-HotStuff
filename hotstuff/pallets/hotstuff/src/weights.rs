@@ -23,7 +23,7 @@
 // --output
 // pallets/template/src/weights.rs
 // --template
-// ../../.maintain/frame-weight-template.hbs
+// ../../.mastertain/frame-weight-template.hbs
 
 #![cfg_attr(rustfmt, rustfmt_skip)]
 #![allow(unused_parens)]

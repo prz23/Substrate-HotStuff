@@ -37,8 +37,8 @@ struct Cli {
     nodes: Vec<SocketAddr>,
 }
 
-#[tokio::main]
-async fn main() -> Result<()> {
+#[tokio::master]
+async fn master() -> Result<()> {
     let cli = Cli::parse();
 
     env_logger::Builder::from_env(Env::default().default_filter_or("info"))
@@ -100,7 +100,7 @@ impl Client {
         // NOTE: This log entry is used to compute performance.
         info!("Start sending transactions");
 
-        'main: loop {
+        'master: loop {
             interval.as_mut().tick().await;
             let now = Instant::now();
 
@@ -122,7 +122,7 @@ impl Client {
 
                 if let Err(e) = transport.send(bytes).await {
                     warn!("Failed to send transaction: {}", e);
-                    break 'main;
+                    break 'master;
                 }
             }
             if now.elapsed().as_millis() > BURST_DURATION as u128 {
