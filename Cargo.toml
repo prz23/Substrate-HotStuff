@@ -22,3 +22,11 @@ inherits = "release"
 lto = "fat"
 # https://doc.rust-lang.org/rustc/codegen-options/index.html#codegen-units
 codegen-units = 1
+
+
+
+[patch."https://github.com/w3f/fflonk"]
+fflonk = { git = "https://github.com/prz23/fflonk", rev = "1beb0585e1c8488956fac7f05da061f9b41e8948" }
+
+[patch."https://github.com/w3f/ring-proof"]
+ring = { git = "https://github.com/prz23/ring-proof", rev = "05a756076cb20f981a52afea3a620168de49f95f" }
